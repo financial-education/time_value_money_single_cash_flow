@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-08-01 Sat 19:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Time Value of Money: Single Cash Flows</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Matt Brigida, Ph.D." />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">The Time Value of Money: Single Cash Flows</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7adeef1">1. Motivation</a></li>
+<li><a href="#orge979a51">2. The Discount Rate</a></li>
+<li><a href="#org71816d8">3. A General Approach</a></li>
+<li><a href="#org902ebf7">4. The General Formula</a></li>
+<li><a href="#org568baad">5. Interactive App</a>
+<ul>
+<li><a href="#orgec3a7aa">5.1. Python calculation</a></li>
+</ul>
+</li>
+<li><a href="#orgef94a15">6. Rearranging the Formula</a>
+<ul>
+<li><a href="#org27960aa">6.1. Python Calculation</a></li>
+</ul>
+</li>
+<li><a href="#orgbc13a66">7. The Interest Rate</a>
+<ul>
+<li><a href="#orgeab8068">7.1. Python Calculation</a></li>
+</ul>
+</li>
+<li><a href="#org8d7803b">8. The Number of Periods</a></li>
+<li><a href="#org04d586f">9. Self-Quiz Questions</a></li>
+<li><a href="#org5518c38">10. Reading Ease Score</a></li>
+<li><a href="#org74699b7">11. Original 5MF Presentation</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7adeef1" class="outline-2">
+<h2 id="org7adeef1"><span class="section-number-2">1</span> Motivation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+What does it mean to say that money has “time value”? Essentially it means that $1 (or €1 or ¥1 or £1) promised for some future date has a different value (usually lower) than the same amount today. 
+</p>
+
+<ul class="org-ul">
+<li>For example, $100 promised two years from now might be worth $90 today. By “worth” we mean that a saver (lender) would voluntarily give up $90 today in exchange for a promise (offered by the borrower) of $100 two years hence. The value today ($90) is called the present value (PV) of the amount promised ($100). And the ratio (0.9) is called the discount factor.</li>
+
+<li>The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). <b>Compounding</b> means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409\% (annually compounded for two years) since $\$90(1 + 5.409\%)<sup>2</sup> = \\(100\).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge979a51" class="outline-2">
+<h2 id="orge979a51"><span class="section-number-2">2</span> The Discount Rate</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The TVM discount factor (or corresponding discount rate) is determined by a number of factors:
+</p>
+
+<ul class="org-ul">
+<li>Supply of savings – by those wishing to shift consumption from present to future (e.g. for retirement)</li>
+<li>Demand for loans – by those wishing to shift consumption from future to present (e.g. for investment)</li>
+<li>Maturity (i.e. the future date when the money is due to be repaid)</li>
+<li>Expected inflation (or deflation), which affects the purchasing power of cash in the future</li>
+<li>Credit risk, which reflects the possibility that the loan won’t be repaid in full and on time</li>
+</ul>
+
+<p>
+In this presentation, we'll cover the basic mechanics of understanding and calculating the time value of money. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71816d8" class="outline-2">
+<h2 id="org71816d8"><span class="section-number-2">3</span> A General Approach</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Say we have \$1 today, and we can invest this dollar <b>every year</b> at 7\% per year.  
+</p>
+
+<ul class="org-ul">
+<li>Then at the end of 1 year we'll have $\$1(1 + 0.07) = \\(1.07\)</li>
+<li>At the end of two years we'll have $\$1.07(1 + 0.07) = \$1(1.07)(1.07) = \$1(1.07<sup>2</sup>) = \\(1.1449\)</li>
+<li>At the end of 3 years we'll have $\$1.1449(1.07) = \$1(1.07<sup>3</sup>) = \\(1.2250\)</li>
+<li>&#x2026;</li>
+<li>At the end of <b>n</b> years &#x2026;</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-org902ebf7" class="outline-2">
+<h2 id="org902ebf7"><span class="section-number-2">4</span> The General Formula</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Proceeding this way for <b>n</b> periods (here a period is a year), we can see the future value (<b>FV</b>) of some amount of money today (denote this as <b>PV</b>) at time <b>n</b> is:
+</p>
+
+<ul class="org-ul">
+<li>\(FV = PV(1 + r)^n\)</li>
+
+<li>Where we assume we can reinvest our money every year at <b>r</b>.</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-org568baad" class="outline-2">
+<h2 id="org568baad"><span class="section-number-2">5</span> Interactive App</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The following app will calculate the future value of $1 for every year up to the maximum year you select.  You can also select the interest rate per year.  
+</p>
+
+<ul class="org-ul">
+<li>Note the marked exponential increase as you increase the interest rate and number of years.  This shows the exponential effect of compounding.</li>
+
+<li>You can also use the app to see the effect of small differences in interest rates on the future value over many years.  For example, the future value of a dollar is worth 33% more if invested for 30 years at 5% instead of 4%.</li>
+</ul>
+
+
+<script>
+
+var calculate = function() {
+
+  var num = Number(document.getElementById("num").value);
+  var rate = Number(document.getElementById("rate").value);
+  var pv = Number(document.getElementById("pv").value);
+
+  var fv = pv * Math.pow((1 + rate), num);
+  
+  document.getElementById("out_fv").innerHTML = fv.toFixed(2);
+
+}
+
+</script>
+
+<body class="all">
+  <h3>
+    Future Value of a Single Cash Flow Calculator
+  </h3>
+
+  <div class="row">
+
+    <div class="column">
+      <table style="width:100%">
+        <tr>
+          <th align="left">Present Value:</th>
+          <th><input id="pv" value="100" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Number of Periods:</th>
+          <th><input id="num" value="10" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Rate Per Period:</th>
+          <th><input id="rate" value="0.07" style="width: 50px"></th>
+        </tr>
+      </table>
+      <button onclick="calculate()">
+        Calculate.
+      </button>
+    </div>
+
+    <div class="column">
+    <p><b>Future Value: <span id="out_fv"></span></b></p>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</body>
+</div>
+
+
+<div id="outline-container-orgec3a7aa" class="outline-3">
+<h3 id="orgec3a7aa"><span class="section-number-3">5.1</span> Python calculation</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">future_value</span><span style="color: #839496;">(</span>pv, rate, periods<span style="color: #839496;">)</span>:
+<span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> pv * <span style="color: #6c71c4;">pow</span><span style="color: #839496;">(</span>1 + rate, periods<span style="color: #839496;">)</span>
+
+<span style="color: #6c71c4;">pv</span> = 100
+<span style="color: #6c71c4;">rate</span> = 0.07
+<span style="color: #6c71c4;">periods</span> = 10
+
+<span style="color: #859900;">print</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">round</span><span style="color: #2aa198;">(</span>future_value<span style="color: #b58900;">(</span>pv, rate, periods<span style="color: #b58900;">)</span>, 2<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+
+</pre>
+</div>
+
+<pre class="example">
+196.72
+
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgef94a15" class="outline-2">
+<h2 id="orgef94a15"><span class="section-number-2">6</span> Rearranging the Formula</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+So now that we have the general formula which describes how a single cash flow moves through time:
+</p>
+
+<ul class="org-ul">
+<li>\(FV = PV(1 + r)^n\)</li>
+</ul>
+
+<p>
+We can now use this to solve for the <b>PV</b>, <b>r</b> and <b>n</b>.  Rearranging for the present value gives: 
+</p>
+
+<ul class="org-ul">
+<li>\(PV = \frac{FV}{(1+r)^n}\)</li>
+
+<li>This shows that the present value decreases if the interest rate increases.  This relationship is very important in asset pricing.</li>
+<li>Finding the present value is often termed <b>discounting</b>.</li>
+</ul>
+
+
+<script>
+
+var calculate1 = function() {
+
+  var num1 = Number(document.getElementById("num1").value);
+  var rate1 = Number(document.getElementById("rate1").value);
+  var fv1 = Number(document.getElementById("fv1").value);
+
+  var pv1 = fv1 / Math.pow((1 + rate1), num1);
+  
+  document.getElementById("out_pv1").innerHTML = pv1.toFixed(2);
+
+}
+
+</script>
+
+<body class="all">
+  <h3>
+    Present Value of a Single Cash Flow Calculator
+  </h3>
+
+  <div class="row">
+
+    <div class="column">
+      <table style="width:100%">
+        <tr>
+          <th align="left">Future Value:</th>
+          <th><input id="fv1" value="100" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Number of Periods:</th>
+          <th><input id="num1" value="10" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Rate Per Period:</th>
+          <th><input id="rate1" value="0.07" style="width: 50px"></th>
+        </tr>
+      </table>
+      <button onclick="calculate1()">
+        Calculate.
+      </button>
+    </div>
+
+    <div class="column">
+    <p><b>Present Value: <span id="out_pv1"></span></b></p>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</body>
+</div>
+
+<div id="outline-container-org27960aa" class="outline-3">
+<h3 id="org27960aa"><span class="section-number-3">6.1</span> Python Calculation</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">present_value</span><span style="color: #839496;">(</span>fv, rate, periods<span style="color: #839496;">)</span>:
+<span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> fv / <span style="color: #6c71c4;">pow</span><span style="color: #839496;">(</span>1 + rate, periods<span style="color: #839496;">)</span>
+
+<span style="color: #6c71c4;">fv</span> = 200
+<span style="color: #6c71c4;">rate</span> = 0.07
+<span style="color: #6c71c4;">periods</span> = 10
+
+<span style="color: #859900;">print</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">round</span><span style="color: #2aa198;">(</span>present_value<span style="color: #b58900;">(</span>fv, rate, periods<span style="color: #b58900;">)</span>, 2<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+
+</pre>
+</div>
+
+<pre class="example">
+101.67
+
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgbc13a66" class="outline-2">
+<h2 id="orgbc13a66"><span class="section-number-2">7</span> The Interest Rate</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Solving our equation for the interest rate we have: 
+</p>
+
+<p>
+\(r = \sqrt[n]{\frac{FV}{PV}} - 1\)
+</p>
+
+<ul class="org-ul">
+<li>Holding other variables constant, the rate per period \(r\) is increasing in \(FV\) and decreasing in \(PV\) and \(r\).</li>
+</ul>
+
+
+<script>
+
+var calculate2 = function() {
+
+  var num2 = Number(document.getElementById("num2").value);
+  var pv2 = Number(document.getElementById("pv2").value);
+  var fv2 = Number(document.getElementById("fv2").value);
+
+  var rate2 = Math.pow((fv2 / pv2), (1 / num2)) - 1;
+  
+  document.getElementById("out_rate2").innerHTML = (100 * rate2).toFixed(2);
+
+}
+
+</script>
+
+<body class="all">
+  <h3>
+    Interest Rate in a Single Cash Flow Calculator
+  </h3>
+
+  <div class="row">
+
+    <div class="column">
+      <table style="width:100%">
+        <tr>
+          <th align="left">Future Value:</th>
+          <th><input id="fv2" value="200" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Present Value:</th>
+          <th><input id="pv2" value="100" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Number of Periods:</th>
+          <th><input id="num2" value="10" style="width: 50px"></th>
+        </tr>
+      </table>
+      <button onclick="calculate2()">
+        Calculate.
+      </button>
+    </div>
+
+    <div class="column">
+    <p><b>Rate Per Period: <span id="out_rate2"></span>%</b></p>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</body>
+</div>
+
+<div id="outline-container-orgeab8068" class="outline-3">
+<h3 id="orgeab8068"><span class="section-number-3">7.1</span> Python Calculation</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">rate</span><span style="color: #839496;">(</span>fv, pv, periods<span style="color: #839496;">)</span>:
+<span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> <span style="color: #6c71c4;">pow</span><span style="color: #839496;">(</span>fv / pv, 1 / periods<span style="color: #839496;">)</span> - 1
+
+<span style="color: #6c71c4;">fv</span> = 200
+<span style="color: #6c71c4;">pv</span> = 100
+<span style="color: #6c71c4;">periods</span> = 10
+
+<span style="color: #859900;">print</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">str</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">round</span><span style="color: #b58900;">(</span>100 * rate<span style="color: #859900;">(</span>fv, pv, periods<span style="color: #859900;">)</span>, 2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span> + <span style="color: #2aa198;">"%"</span><span style="color: #839496;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+7.18%
+
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org8d7803b" class="outline-2">
+<h2 id="org8d7803b"><span class="section-number-2">8</span> The Number of Periods</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Lastly, solving for the number of periods yields: 
+</p>
+
+<p>
+\(n = \frac{ln\left(\frac{FV}{PV}\right)}{ln\left(1+r\right)}\)
+</p>
+
+<ul class="org-ul">
+<li>Holding other variables constant, the number of periods \(n\) is also increasing in \(FV\), and decreasing in \(PV\) and \(r\).</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #859900;">import</span> math
+
+<span style="color: #859900;">def</span> <span style="color: #b58900;">periods</span><span style="color: #839496;">(</span>fv, pv, rate<span style="color: #839496;">)</span>:
+<span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> math.log<span style="color: #839496;">(</span>fv / pv<span style="color: #839496;">)</span> / math.log<span style="color: #839496;">(</span>1 + rate<span style="color: #839496;">)</span>
+
+<span style="color: #6c71c4;">fv</span> = 200
+<span style="color: #6c71c4;">pv</span> = 100
+<span style="color: #6c71c4;">rate</span> = 0.07
+
+<span style="color: #859900;">print</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">str</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">round</span><span style="color: #b58900;">(</span>periods<span style="color: #859900;">(</span>fv, pv, rate<span style="color: #859900;">)</span>, 2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span> + <span style="color: #2aa198;">" periods"</span><span style="color: #839496;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+10.24 periods
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org04d586f" class="outline-2">
+<h2 id="org04d586f"><span class="section-number-2">9</span> Self-Quiz Questions</h2>
+<div class="outline-text-2" id="text-9">
+<script>
+var submitAnswer1 = function() {
+
+  var radios = document.getElementsByName('choice');
+  var val= "";
+  for (var i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+         val = radios[i].value; 
+         break;
+       }
+  }
+  
+  if (val == "" ) {
+   // alert('please select choice answer');
+document.getElementById("p1").innerHTML = "Choose your answer.";
+document.getElementById("p1").style.backgroundColor = "white";
+  } else if ( val == "Correct" ) {
+//    alert('Answer is correct !');
+document.getElementById("p1").innerHTML = "Correct!";
+document.getElementById("p1").style.backgroundColor = "#90EE90";
+  } else {
+//    alert('Answer is wrong');
+document.getElementById("p1").innerHTML = "Wrong";
+document.getElementById("p1").style.backgroundColor = "#ff6666";
+  }
+};
+</script>
+
+
+
+<p>1. You bought a stock for $30 per share.  Five years later you sold it for $70 per share.  What was your annual return?</p>
+<form >
+<input type="radio" name="choice" value="Incorrect"> 1.14%<br>
+<input type="radio" name="choice" value="Incorrect"> 8.38%<br>
+<input type="radio" name="choice" value="Correct"> 18.47%<br>
+<input type="radio" name="choice" value="Incorrect"> 37.12%
+</form>
+<button onclick="submitAnswer1()">Submit Answer</button>
+<span id="p1"></span>
+<br>
+
+
+<script>
+var submitAnswer2 = function() {
+
+  var radios = document.getElementsByName('choice2');
+  var val= "";
+  for (var i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+         val = radios[i].value; 
+         break;
+       }
+  }
+  
+  if (val == "" ) {
+   // alert('please select choice answer');
+document.getElementById("p2").innerHTML = "Choose your answer.";
+document.getElementById("p2").style.backgroundColor = "white";
+  } else if ( val == "Correct" ) {
+//    alert('Answer is correct !');
+document.getElementById("p2").innerHTML = "Correct!";
+document.getElementById("p2").style.backgroundColor = "#90EE90";
+  } else {
+//    alert('Answer is wrong');
+document.getElementById("p2").innerHTML = "Wrong";
+document.getElementById("p2").style.backgroundColor = "#ff6666";
+  }
+};
+</script>
+
+
+<br>
+<p>2. Assume McCauley Ski Inc. has a 12% ROA and 20% payout ratio.  What is the maximum rate the firm can grow using only internal financing?</p>
+<form >
+<input type="radio" name="choice2" value="Incorrect"> -4.51%<br>
+<input type="radio" name="choice2" value="Incorrect"> 0.00%<br>
+<input type="radio" name="choice2" value="Correct"> 2.46%<br>
+<input type="radio" name="choice2" value="Incorrect"> 12.55%
+</form>
+<button onclick="submitAnswer2()">Submit Answer</button>
+<span id="p2"></span>
+
+<script>
+var submitAnswer3 = function() {
+
+  var radios = document.getElementsByName('choice3');
+  var val= "";
+  for (var i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+         val = radios[i].value; 
+         break;
+       }
+  }
+  
+  if (val == "" ) {
+   // alert('please select choice answer');
+document.getElementById("p3").innerHTML = "Choose your answer.";
+document.getElementById("p3").style.backgroundColor = "white";
+  } else if ( val == "Correct" ) {
+//    alert('Answer is correct !');
+document.getElementById("p3").innerHTML = "Correct!";
+document.getElementById("p3").style.backgroundColor = "#90EE90";
+  } else {
+//    alert('Answer is wrong');
+document.getElementById("p3").innerHTML = "Wrong";
+document.getElementById("p3").style.backgroundColor = "#ff6666";
+  }
+};
+</script>
+
+
+<br>
+<p>3.  If a firm increases its profit margin, its IGR and SGR _______.  </p>
+<form >
+<input type="radio" name="choice3" value="Correct"> Increase<br>
+<input type="radio" name="choice3" value="Incorrect"> Decrease<br>
+<input type="radio" name="choice3" value="Incorrect"> Are unchanged
+</form>
+<button onclick="submitAnswer3()">Submit Answer</button>
+<span id="p3"></span>
+</div>
+</div>
+
+<div id="outline-container-org5518c38" class="outline-2">
+<h2 id="org5518c38"><span class="section-number-2">10</span> <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests">Reading Ease Score</a></h2>
+<div class="outline-text-2" id="text-10">
+<pre class="example">
+
+"Flesch-Kincaid reading ease score: 93.43 Very easy (5th grade)"
+
+</pre>
+
+<pre class="example">
+
+"Flesch-Kincaid grade level score: 2.66"
+
+</pre>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org74699b7" class="outline-2">
+<h2 id="org74699b7"><span class="section-number-2">11</span> Original 5MF Presentation</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Note, this presentation was originally here: 
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Matt Brigida, Ph.D.</p>
+<p class="date">Created: 2020-08-01 Sat 19:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
