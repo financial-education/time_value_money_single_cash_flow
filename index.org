@@ -1,0 +1,235 @@
+#+title: The Time Value of Money: Single Cash Flows
+#+author: Matt Brigida, Ph.D.
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+* Motivation
+
+What does it mean to say that money has “time value”? Essentially it means that $1 (or €1 or ¥1 or £1) promised for some future date has a different value (usually lower) than the same amount today. 
+
+-  For example, $100 promised two years from now might be worth $90 today. By “worth” we mean that a saver (lender) would voluntarily give up $90 today in exchange for a promise (offered by the borrower) of $100 two years hence. The value today ($90) is called the present value (PV) of the amount promised ($100). And the ratio (0.9) is called the discount factor. 
+
+-  The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). *Compounding* means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409\% (annually compounded for two years) since $\$90(1 + 5.409\%)^2 = \$100$. 
+
+* The Discount Rate
+
+The TVM discount factor (or corresponding discount rate) is determined by a number of factors:
+
+-  Supply of savings – by those wishing to shift consumption from present to future (e.g. for retirement)
+-  Demand for loans – by those wishing to shift consumption from future to present (e.g. for investment)
+-  Maturity (i.e. the future date when the money is due to be repaid)
+-  Expected inflation (or deflation), which affects the purchasing power of cash in the future
+-  Credit risk, which reflects the possibility that the loan won’t be repaid in full and on time
+
+In this presentation, we'll cover the basic mechanics of understanding and calculating the time value of money. 
+
+* A General Approach
+
+Say we have \$1 today, and we can invest this dollar *every year* at 7\% per year.  
+
+- Then at the end of 1 year we'll have $\$1(1 + 0.07) = \$1.07$
+- At the end of two years we'll have $\$1.07(1 + 0.07) = \$1(1.07)(1.07) = \$1(1.07^2) = \$1.1449$
+- At the end of 3 years we'll have $\$1.1449(1.07) = \$1(1.07^3) = \$1.2250$
+- ...
+- At the end of *n* years ...
+
+ 
+
+* The General Formula 
+
+Proceeding this way for *n* periods (here a period is a year), we can see the future value (*FV*) of some amount of money today (denote this as *PV*) at time *n* is:
+
+-  $FV = PV(1 + r)^n$
+
+-  Where we assume we can reinvest our money every year at *r*.
+
+ 
+
+* Interactive App
+
+The following app will calculate the future value of \$1 for every year up to the maximum year you select.  You can also select the interest rate per year.  
+
+-  Note the marked exponential increase as you increase the interest rate and number of years.  This shows the exponential effect of compounding.
+
+-  You can also use the app to see the effect of small differences in interest rates on the future value over many years.  For example, the future value of a dollar is worth 33\% more if invested for 30 years at 5\% instead of 4\%.
+
+ 
+
+* 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#{{{
+library(metricsgraphics)
+inputPanel(
+	   sliderInput("rate", label = "Annual Interest Rate", min = -.05, max =0.5, step = .01, value = .05),
+	   sliderInput("years", label = "Number of Years", min = 1, max =50, step = 1, value = 10)
+	   #            sliderInput("pv", label = "Present Value", min = 1, max =50, step = 1, value = 10),
+	   )
+
+renderMetricsgraphics({
+  fv <- (1 + input$rate)^{1:input$years}
+  fv <- c(1, fv)
+  fv <- as.data.frame(cbind(seq(0, input$years, by = 1), fv))
+  names(fv) <- c("year", "Future_Value")
+  fv %>%
+      mjs_plot(x=year, y=Future_Value) %>%
+      mjs_line() 
+})
+#}}}
+```
+
+ 
+
+
+<!-- * The Effect of Compounding 
+add an app which shows the future value broken into simple and compound interest? 
+
+
+-->
+
+
+* Rearranging the Formula
+
+So now that we have the general formula which describes how a single cash flow moves through time:
+
+- $FV = PV(1 + r)^n$
+ 
+We can now use this to solve for the *PV*, *r* and *n*.  Rearranging for the present value gives: 
+
+- $PV = \frac{FV}{(1+r)^n}$
+
+-  This shows that the present value decreases if the interest rate increases.  This relationship is very important in asset pricing.
+-  Finding the present value is often termed *discounting*.
+
+ 
+
+* 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#{{{
+library(metricsgraphics)
+inputPanel(
+	   sliderInput("rate1", label = "Annual Interest Rate", min = -.05, max =0.5, step = .01, value = .05),
+	   sliderInput("years1", label = "Years Discounted", min = 1, max =50, step = 1, value = 10)
+	   )
+
+renderMetricsgraphics({
+    pv <- 1 / ((1 + input$rate1)^{1:input$years1})
+    pv <- c(1, pv)
+    pv <- as.data.frame(cbind(seq(0, input$years1, by = 1), pv))
+    names(pv) <- c("year", "Present_Value")
+    pv %>%
+        mjs_plot(x=year, y=Present_Value) %>%
+        mjs_line() 
+})
+                                        #}}}
+```
+
+ 
+
+* The Interest Rate
+
+Solving our equation for the interest rate we have: 
+
+ $r = \sqrt[n]{\frac{FV}{PV}} - 1$
+
+- Holding other variables constant, the rate per period $r$ is increasing in $FV$ and decreasing in $PV$ and $r$.
+
+ 
+
+* The Number of Periods
+
+Lastly, solving for the number of periods yields: 
+
+$n = \frac{ln\left(\frac{FV}{PV}\right)}{ln\left(1+r\right)}$
+
+- Holding other variables constant, the number of periods $n$ is also increasing in $FV$, and decreasing in $PV$ and $r$.
+
+ 
+
+* 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#{{{
+sidebarLayout(
+    sidebarPanel(
+        selectInput("type", label = "Solve For:", choices = c("Future Value" = "fv",
+                                                              "Present Value" = "pv",
+                                                              "Rate Per Period" = "r",
+                                                              "Number of Periods" = "n")),
+        conditionalPanel(
+            condition = "input.type == 'fv'",
+            numericInput("pv", "Present Value", value = 100, step = .01),
+            numericInput("r", "Rate Per Period", value = 0.05),
+            numericInput("n", "Number of Periods", value = 10)
+        ),
+        conditionalPanel(
+            condition = "input.type == 'pv'",
+            numericInput("fv2", "Future Value", value = 100, step = .01),
+            numericInput("r2", "Rate Per Period", value = 0.05),
+            numericInput("n2", "Number of Periods", value = 10)
+        ),
+        conditionalPanel(
+            condition = "input.type == 'r'",
+            numericInput("pv3", "Present Value", value = 100, step = .01),
+            numericInput("fv3", "Future Value", value = 150),
+            numericInput("n3", "Number of Periods", value = 10)
+        ),
+        conditionalPanel(
+            condition = "input.type == 'n'",
+            numericInput("pv4", "Present Value", value = 100, step = .01),
+            numericInput("fv4", "Future Value", value = 150),
+            numericInput("r4", "Rate Per Periods", value = 0.05)
+        )
+
+
+        ## div(style="height: 75px;", numericInput("Stock", "Present Stock Price", min = .01, max = 2000, value = 50, step = .05)),
+        ## div(style="height: 75px;", numericInput("Vol", "Annualized Volatility", min = .01, max = 20, value = 0.20, step = .01)),
+        ## div(style="height: 75px;", numericInput("Strike", "Strike Price", min = .01, max = 1, value = 52, step = .05)),
+        ## div(style="height: 75px;", numericInput("Rf", "Risk Free Rate", min = 0.001, max = 0.5, value = 0.01, step = .001)),
+        ## div(style="height: 75px;", numericInput("Time", "Years to Expiration", min = 0.01, max = 50, value = 1, step = .01)),
+        ## div(style="height: 75px;", numericInput("Div", "Dividend Yield", min = 0, max = 1, value = 0, step = .01))#,
+        ## ## div(style="height: 75px;", radioButtons("out", "Value to See", choices = list("Call Price" = 1, "d1" = 2, "d2" = 3), selected = 1)) 
+    ),
+    mainPanel(
+
+        renderPlot({
+            if (input$type == 'fv'){
+                fv = input$pv * (1 + input$r)^{input$n}
+                plot(0, ylim = c(0,1), xlim = c(0,1), type = "n", xaxt = "n", yaxt = "n", ylab = "", xlab = "", main = "TVM: Single CFs")
+                text(x = 0.5, y = 0.5, labels = paste0("FV = $", round(fv, 2)), cex = 3)
+                ## text(x = 0.1, y = 0.95, labels = "Call Price", cex = 2)
+            } else {
+                if (input$type == 'pv'){
+                    pv2 = input$fv2 / (1 + input$r2)^{input$n2}
+                    plot(0, ylim = c(0,1), xlim = c(0,1), type = "n", xaxt = "n", yaxt = "n", ylab = "", xlab = "", main = "TVM: Single CFs")
+                    text(x = 0.5, y = 0.5, labels = paste0("PV = $", round(pv2, 2)), cex = 3)
+                    ## text(x = 0.1, y = 0.95, labels = "Call Price", cex = 2)
+                } else {
+                    if (input$type == 'r'){
+                        r3 = ( input$fv3 / input$pv3 )^{(1 / input$n3 )} - 1 
+                        plot(0, ylim = c(0,1), xlim = c(0,1), type = "n", xaxt = "n", yaxt = "n", ylab = "", xlab = "", main = "TVM: Single CFs")
+                        text(x = 0.5, y = 0.5, labels = paste0("Rate = ", 100 * round(r3, 4), "%"), cex = 3)
+                        ## text(x = 0.1, y = 0.95, labels = "Call Price", cex = 2)
+                    } else {
+                        n4 = log(input$fv4 / input$pv4 ) / log( 1 + input$r4 )
+                        plot(0, ylim = c(0,1), xlim = c(0,1), type = "n", xaxt = "n", yaxt = "n", ylab = "", xlab = "", main = "TVM: Single CFs")
+                        text(x = 0.5, y = 0.5, labels = paste0("Periods = ", round(n4, 2)), cex = 3)
+                        ## text(x = 0.1, y = 0.95, labels = "Call Price", cex = 2)
+                    }
+                }
+            }
+            
+            
+        })
+    )
+)
+#}}}
+```
+
+ 
+
+
+* Original 5MF Presentation
+
+Note, this presentation was originally here: 
+
+
