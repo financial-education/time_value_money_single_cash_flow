@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-08-01 Sat 19:31 -->
+<!-- 2020-08-02 Sun 11:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Time Value of Money: Single Cash Flows</title>
@@ -262,36 +262,31 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7adeef1">1. Motivation</a></li>
-<li><a href="#orge979a51">2. The Discount Rate</a></li>
-<li><a href="#org71816d8">3. A General Approach</a></li>
-<li><a href="#org902ebf7">4. The General Formula</a></li>
-<li><a href="#org568baad">5. Interactive App</a>
+<li><a href="#org66d5799">1. The Discount Rate</a></li>
+<li><a href="#orgd1d8b16">2. A General Approach</a></li>
+<li><a href="#org5427cc6">3. The General Formula</a></li>
+<li><a href="#orgbfcc613">4. Interactive App</a>
 <ul>
-<li><a href="#orgec3a7aa">5.1. Python calculation</a></li>
+<li><a href="#org49ce3ab">4.1. Python calculation</a></li>
 </ul>
 </li>
-<li><a href="#orgef94a15">6. Rearranging the Formula</a>
+<li><a href="#org772106e">5. Rearranging the Formula</a>
 <ul>
-<li><a href="#org27960aa">6.1. Python Calculation</a></li>
+<li><a href="#org0c2f81b">5.1. Python Calculation</a></li>
 </ul>
 </li>
-<li><a href="#orgbc13a66">7. The Interest Rate</a>
+<li><a href="#org8355b18">6. The Interest Rate</a>
 <ul>
-<li><a href="#orgeab8068">7.1. Python Calculation</a></li>
+<li><a href="#orge50bc7b">6.1. Python Calculation</a></li>
 </ul>
 </li>
-<li><a href="#org8d7803b">8. The Number of Periods</a></li>
-<li><a href="#org04d586f">9. Self-Quiz Questions</a></li>
-<li><a href="#org5518c38">10. Reading Ease Score</a></li>
-<li><a href="#org74699b7">11. Original 5MF Presentation</a></li>
+<li><a href="#org2b2331e">7. The Number of Periods</a></li>
+<li><a href="#org42c6d10">8. Self-Quiz Questions</a></li>
+<li><a href="#org66d8156">9. Reading Ease Score</a></li>
+<li><a href="#orgda4a411">10. Original 5MF Presentation</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org7adeef1" class="outline-2">
-<h2 id="org7adeef1"><span class="section-number-2">1</span> Motivation</h2>
-<div class="outline-text-2" id="text-1">
 <p>
 What does it mean to say that money has “time value”? Essentially it means that $1 (or €1 or ¥1 or £1) promised for some future date has a different value (usually lower) than the same amount today. 
 </p>
@@ -299,14 +294,12 @@ What does it mean to say that money has “time value”? Essentially it means t
 <ul class="org-ul">
 <li>For example, $100 promised two years from now might be worth $90 today. By “worth” we mean that a saver (lender) would voluntarily give up $90 today in exchange for a promise (offered by the borrower) of $100 two years hence. The value today ($90) is called the present value (PV) of the amount promised ($100). And the ratio (0.9) is called the discount factor.</li>
 
-<li>The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). <b>Compounding</b> means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409\% (annually compounded for two years) since $\$90(1 + 5.409\%)<sup>2</sup> = \\(100\).</li>
+<li>The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). <b>Compounding</b> means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409% (annually compounded for two years) since \(90(1 + 5.409%)^2 = 100\).</li>
 </ul>
-</div>
-</div>
 
-<div id="outline-container-orge979a51" class="outline-2">
-<h2 id="orge979a51"><span class="section-number-2">2</span> The Discount Rate</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org66d5799" class="outline-2">
+<h2 id="org66d5799"><span class="section-number-2">1</span> The Discount Rate</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 The TVM discount factor (or corresponding discount rate) is determined by a number of factors:
 </p>
@@ -325,17 +318,17 @@ In this presentation, we'll cover the basic mechanics of understanding and calcu
 </div>
 </div>
 
-<div id="outline-container-org71816d8" class="outline-2">
-<h2 id="org71816d8"><span class="section-number-2">3</span> A General Approach</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgd1d8b16" class="outline-2">
+<h2 id="orgd1d8b16"><span class="section-number-2">2</span> A General Approach</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 Say we have \$1 today, and we can invest this dollar <b>every year</b> at 7\% per year.  
 </p>
 
 <ul class="org-ul">
-<li>Then at the end of 1 year we'll have $\$1(1 + 0.07) = \\(1.07\)</li>
-<li>At the end of two years we'll have $\$1.07(1 + 0.07) = \$1(1.07)(1.07) = \$1(1.07<sup>2</sup>) = \\(1.1449\)</li>
-<li>At the end of 3 years we'll have $\$1.1449(1.07) = \$1(1.07<sup>3</sup>) = \\(1.2250\)</li>
+<li>Then at the end of 1 year we'll have \(1(1 + 0.07) = 1.07\)</li>
+<li>At the end of two years we'll have \(1.07(1 + 0.07) = 1(1.07)(1.07) = 1(1.07^2) = 1.1449\)</li>
+<li>At the end of 3 years we'll have \(1.1449(1.07) = 1(1.07^3) = 1.2250\)</li>
 <li>&#x2026;</li>
 <li>At the end of <b>n</b> years &#x2026;</li>
 </ul>
@@ -344,9 +337,9 @@ Say we have \$1 today, and we can invest this dollar <b>every year</b> at 7\% pe
 
 
 
-<div id="outline-container-org902ebf7" class="outline-2">
-<h2 id="org902ebf7"><span class="section-number-2">4</span> The General Formula</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org5427cc6" class="outline-2">
+<h2 id="org5427cc6"><span class="section-number-2">3</span> The General Formula</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Proceeding this way for <b>n</b> periods (here a period is a year), we can see the future value (<b>FV</b>) of some amount of money today (denote this as <b>PV</b>) at time <b>n</b> is:
 </p>
@@ -361,9 +354,9 @@ Proceeding this way for <b>n</b> periods (here a period is a year), we can see t
 
 
 
-<div id="outline-container-org568baad" class="outline-2">
-<h2 id="org568baad"><span class="section-number-2">5</span> Interactive App</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgbfcc613" class="outline-2">
+<h2 id="orgbfcc613"><span class="section-number-2">4</span> Interactive App</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 The following app will calculate the future value of $1 for every year up to the maximum year you select.  You can also select the interest rate per year.  
 </p>
@@ -430,9 +423,9 @@ var calculate = function() {
 </div>
 
 
-<div id="outline-container-orgec3a7aa" class="outline-3">
-<h3 id="orgec3a7aa"><span class="section-number-3">5.1</span> Python calculation</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org49ce3ab" class="outline-3">
+<h3 id="org49ce3ab"><span class="section-number-3">4.1</span> Python calculation</h3>
+<div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">future_value</span><span style="color: #839496;">(</span>pv, rate, periods<span style="color: #839496;">)</span>:
 <span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> pv * <span style="color: #6c71c4;">pow</span><span style="color: #839496;">(</span>1 + rate, periods<span style="color: #839496;">)</span>
@@ -455,9 +448,9 @@ var calculate = function() {
 </div>
 
 
-<div id="outline-container-orgef94a15" class="outline-2">
-<h2 id="orgef94a15"><span class="section-number-2">6</span> Rearranging the Formula</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org772106e" class="outline-2">
+<h2 id="org772106e"><span class="section-number-2">5</span> Rearranging the Formula</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 So now that we have the general formula which describes how a single cash flow moves through time:
 </p>
@@ -532,9 +525,9 @@ var calculate1 = function() {
 </body>
 </div>
 
-<div id="outline-container-org27960aa" class="outline-3">
-<h3 id="org27960aa"><span class="section-number-3">6.1</span> Python Calculation</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-org0c2f81b" class="outline-3">
+<h3 id="org0c2f81b"><span class="section-number-3">5.1</span> Python Calculation</h3>
+<div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">present_value</span><span style="color: #839496;">(</span>fv, rate, periods<span style="color: #839496;">)</span>:
 <span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> fv / <span style="color: #6c71c4;">pow</span><span style="color: #839496;">(</span>1 + rate, periods<span style="color: #839496;">)</span>
@@ -558,9 +551,9 @@ var calculate1 = function() {
 
 
 
-<div id="outline-container-orgbc13a66" class="outline-2">
-<h2 id="orgbc13a66"><span class="section-number-2">7</span> The Interest Rate</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org8355b18" class="outline-2">
+<h2 id="org8355b18"><span class="section-number-2">6</span> The Interest Rate</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 Solving our equation for the interest rate we have: 
 </p>
@@ -628,9 +621,9 @@ var calculate2 = function() {
 </body>
 </div>
 
-<div id="outline-container-orgeab8068" class="outline-3">
-<h3 id="orgeab8068"><span class="section-number-3">7.1</span> Python Calculation</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-orge50bc7b" class="outline-3">
+<h3 id="orge50bc7b"><span class="section-number-3">6.1</span> Python Calculation</h3>
+<div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">rate</span><span style="color: #839496;">(</span>fv, pv, periods<span style="color: #839496;">)</span>:
 <span style="color: #586e75; background-color: #073642;"> </span>   <span style="color: #859900;">return</span> <span style="color: #6c71c4;">pow</span><span style="color: #839496;">(</span>fv / pv, 1 / periods<span style="color: #839496;">)</span> - 1
@@ -653,9 +646,9 @@ var calculate2 = function() {
 
 
 
-<div id="outline-container-org8d7803b" class="outline-2">
-<h2 id="org8d7803b"><span class="section-number-2">8</span> The Number of Periods</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org2b2331e" class="outline-2">
+<h2 id="org2b2331e"><span class="section-number-2">7</span> The Number of Periods</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Lastly, solving for the number of periods yields: 
 </p>
@@ -667,6 +660,61 @@ Lastly, solving for the number of periods yields:
 <ul class="org-ul">
 <li>Holding other variables constant, the number of periods \(n\) is also increasing in \(FV\), and decreasing in \(PV\) and \(r\).</li>
 </ul>
+
+
+<script>
+
+var calculate3 = function() {
+
+  var rate3 = Number(document.getElementById("rate3").value);
+  var pv3 = Number(document.getElementById("pv3").value);
+  var fv3 = Number(document.getElementById("fv3").value);
+
+  var period3 = Math.log(fv3 / pv3) / Math.log(1 + rate3);
+  
+  document.getElementById("out_period3").innerHTML = period3.toFixed(2);
+
+}
+
+</script>
+
+<body class="all">
+  <h3>
+    Period in a Single Cash Flow Calculator
+  </h3>
+
+  <div class="row">
+
+    <div class="column">
+      <table style="width:100%">
+        <tr>
+          <th align="left">Future Value:</th>
+          <th><input id="fv3" value="200" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Present Value:</th>
+          <th><input id="pv3" value="100" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Rate:</th>
+          <th><input id="rate3" value="0.07" style="width: 50px"></th>
+        </tr>
+      </table>
+      <button onclick="calculate3()">
+        Calculate.
+      </button>
+    </div>
+
+    <div class="column">
+    <p><b>Number of Periods: <span id="out_period3"></span></b></p>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</body>
+
 
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">import</span> math
@@ -690,9 +738,9 @@ Lastly, solving for the number of periods yields:
 </div>
 
 
-<div id="outline-container-org04d586f" class="outline-2">
-<h2 id="org04d586f"><span class="section-number-2">9</span> Self-Quiz Questions</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org42c6d10" class="outline-2">
+<h2 id="org42c6d10"><span class="section-number-2">8</span> Self-Quiz Questions</h2>
+<div class="outline-text-2" id="text-8">
 <script>
 var submitAnswer1 = function() {
 
@@ -765,12 +813,12 @@ document.getElementById("p2").style.backgroundColor = "#ff6666";
 
 
 <br>
-<p>2. Assume McCauley Ski Inc. has a 12% ROA and 20% payout ratio.  What is the maximum rate the firm can grow using only internal financing?</p>
+<p>2. You have $30,000 today and you can invest it at 5% per year.  How many years until you have $40,000?</p>
 <form >
-<input type="radio" name="choice2" value="Incorrect"> -4.51%<br>
-<input type="radio" name="choice2" value="Incorrect"> 0.00%<br>
-<input type="radio" name="choice2" value="Correct"> 2.46%<br>
-<input type="radio" name="choice2" value="Incorrect"> 12.55%
+<input type="radio" name="choice2" value="Correct"> 5.90%<br>
+<input type="radio" name="choice2" value="Incorrect"> 10.10%<br>
+<input type="radio" name="choice2" value="Incorrect"> 12.46%<br>
+<input type="radio" name="choice2" value="Incorrect"> 14.55%
 </form>
 <button onclick="submitAnswer2()">Submit Answer</button>
 <span id="p2"></span>
@@ -805,49 +853,49 @@ document.getElementById("p3").style.backgroundColor = "#ff6666";
 
 
 <br>
-<p>3.  If a firm increases its profit margin, its IGR and SGR _______.  </p>
+<p>3.  If you increase the discount rate, the present value will:</p>
 <form >
-<input type="radio" name="choice3" value="Correct"> Increase<br>
-<input type="radio" name="choice3" value="Incorrect"> Decrease<br>
-<input type="radio" name="choice3" value="Incorrect"> Are unchanged
+<input type="radio" name="choice3" value="Incorrect"> Increase<br>
+<input type="radio" name="choice3" value="Correct"> Decrease<br>
+<input type="radio" name="choice3" value="Incorrect"> not change
 </form>
 <button onclick="submitAnswer3()">Submit Answer</button>
 <span id="p3"></span>
 </div>
 </div>
 
-<div id="outline-container-org5518c38" class="outline-2">
-<h2 id="org5518c38"><span class="section-number-2">10</span> <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests">Reading Ease Score</a></h2>
+<div id="outline-container-org66d8156" class="outline-2">
+<h2 id="org66d8156"><span class="section-number-2">9</span> <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests">Reading Ease Score</a></h2>
+<div class="outline-text-2" id="text-9">
+<pre class="example">
+
+"Flesch-Kincaid reading ease score: 93.59 Very easy (5th grade)"
+
+</pre>
+
+<pre class="example">
+
+"Flesch-Kincaid grade level score: 2.69"
+
+</pre>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgda4a411" class="outline-2">
+<h2 id="orgda4a411"><span class="section-number-2">10</span> Original 5MF Presentation</h2>
 <div class="outline-text-2" id="text-10">
-<pre class="example">
-
-"Flesch-Kincaid reading ease score: 93.43 Very easy (5th grade)"
-
-</pre>
-
-<pre class="example">
-
-"Flesch-Kincaid grade level score: 2.66"
-
-</pre>
-</div>
-</div>
-
-
-
-
-<div id="outline-container-org74699b7" class="outline-2">
-<h2 id="org74699b7"><span class="section-number-2">11</span> Original 5MF Presentation</h2>
-<div class="outline-text-2" id="text-11">
 <p>
-Note, this presentation was originally here: 
+Note, this presentation was originally here: <a href="https://github.com/FinancialMarkets/5MinuteFinance/tree/master/Corporate_Finance/TVM_Single_CFs">https://github.com/FinancialMarkets/5MinuteFinance/tree/master/Corporate_Finance/TVM_Single_CFs</a>
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matt Brigida, Ph.D.</p>
-<p class="date">Created: 2020-08-01 Sat 19:31</p>
+<p class="date">Created: 2020-08-02 Sun 11:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

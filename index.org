@@ -2,13 +2,12 @@
 #+author: Matt Brigida, Ph.D.
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
-* Motivation
 
 What does it mean to say that money has “time value”? Essentially it means that $1 (or €1 or ¥1 or £1) promised for some future date has a different value (usually lower) than the same amount today. 
 
 -  For example, $100 promised two years from now might be worth $90 today. By “worth” we mean that a saver (lender) would voluntarily give up $90 today in exchange for a promise (offered by the borrower) of $100 two years hence. The value today ($90) is called the present value (PV) of the amount promised ($100). And the ratio (0.9) is called the discount factor. 
 
--  The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). *Compounding* means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409\% (annually compounded for two years) since $\$90(1 + 5.409\%)^2 = \$100$. 
+-  The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). *Compounding* means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409% (annually compounded for two years) since $90(1 + 5.409%)^2 = 100$. 
 
 * The Discount Rate
 
@@ -26,9 +25,9 @@ In this presentation, we'll cover the basic mechanics of understanding and calcu
 
 Say we have \$1 today, and we can invest this dollar *every year* at 7\% per year.  
 
-- Then at the end of 1 year we'll have $\$1(1 + 0.07) = \$1.07$
-- At the end of two years we'll have $\$1.07(1 + 0.07) = \$1(1.07)(1.07) = \$1(1.07^2) = \$1.1449$
-- At the end of 3 years we'll have $\$1.1449(1.07) = \$1(1.07^3) = \$1.2250$
+- Then at the end of 1 year we'll have $1(1 + 0.07) = 1.07$
+- At the end of two years we'll have $1.07(1 + 0.07) = 1(1.07)(1.07) = 1(1.07^2) = 1.1449$
+- At the end of 3 years we'll have $1.1449(1.07) = 1(1.07^3) = 1.2250$
 - ...
 - At the end of *n* years ...
 
@@ -308,6 +307,64 @@ $n = \frac{ln\left(\frac{FV}{PV}\right)}{ln\left(1+r\right)}$
 
 - Holding other variables constant, the number of periods $n$ is also increasing in $FV$, and decreasing in $PV$ and $r$.
 
+#+BEGIN_EXPORT html
+
+<script>
+
+var calculate3 = function() {
+
+  var rate3 = Number(document.getElementById("rate3").value);
+  var pv3 = Number(document.getElementById("pv3").value);
+  var fv3 = Number(document.getElementById("fv3").value);
+
+  var period3 = Math.log(fv3 / pv3) / Math.log(1 + rate3);
+  
+  document.getElementById("out_period3").innerHTML = period3.toFixed(2);
+
+}
+
+</script>
+
+<body class="all">
+  <h3>
+    Period in a Single Cash Flow Calculator
+  </h3>
+
+  <div class="row">
+
+    <div class="column">
+      <table style="width:100%">
+        <tr>
+          <th align="left">Future Value:</th>
+          <th><input id="fv3" value="200" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Present Value:</th>
+          <th><input id="pv3" value="100" style="width: 50px"></th>
+        </tr>
+        <tr>
+          <th align="left">Rate:</th>
+          <th><input id="rate3" value="0.07" style="width: 50px"></th>
+        </tr>
+      </table>
+      <button onclick="calculate3()">
+        Calculate.
+      </button>
+    </div>
+
+    <div class="column">
+    <p><b>Number of Periods: <span id="out_period3"></span></b></p>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</body>
+
+#+END_EXPORT
+
+
 #+BEGIN_SRC python :results output :exports both
 import math
 
@@ -403,12 +460,12 @@ document.getElementById("p2").style.backgroundColor = "#ff6666";
 
 
 <br>
-<p>2. Assume McCauley Ski Inc. has a 12% ROA and 20% payout ratio.  What is the maximum rate the firm can grow using only internal financing?</p>
+<p>2. You have $30,000 today and you can invest it at 5% per year.  How many years until you have $40,000?</p>
 <form >
-<input type="radio" name="choice2" value="Incorrect"> -4.51%<br>
-<input type="radio" name="choice2" value="Incorrect"> 0.00%<br>
-<input type="radio" name="choice2" value="Correct"> 2.46%<br>
-<input type="radio" name="choice2" value="Incorrect"> 12.55%
+<input type="radio" name="choice2" value="Correct"> 5.90%<br>
+<input type="radio" name="choice2" value="Incorrect"> 10.10%<br>
+<input type="radio" name="choice2" value="Incorrect"> 12.46%<br>
+<input type="radio" name="choice2" value="Incorrect"> 14.55%
 </form>
 <button onclick="submitAnswer2()">Submit Answer</button>
 <span id="p2"></span>
@@ -445,11 +502,11 @@ document.getElementById("p3").style.backgroundColor = "#ff6666";
 
 
 <br>
-<p>3.  If a firm increases its profit margin, its IGR and SGR _______.  </p>
+<p>3.  If you increase the discount rate, the present value will:</p>
 <form >
-<input type="radio" name="choice3" value="Correct"> Increase<br>
-<input type="radio" name="choice3" value="Incorrect"> Decrease<br>
-<input type="radio" name="choice3" value="Incorrect"> Are unchanged
+<input type="radio" name="choice3" value="Incorrect"> Increase<br>
+<input type="radio" name="choice3" value="Correct"> Decrease<br>
+<input type="radio" name="choice3" value="Incorrect"> not change
 </form>
 <button onclick="submitAnswer3()">Submit Answer</button>
 <span id="p3"></span>
@@ -463,7 +520,7 @@ document.getElementById("p3").style.backgroundColor = "#ff6666";
 
 #+RESULTS:
 : 
-: "Flesch-Kincaid reading ease score: 95.31 Very easy (5th grade)"
+: "Flesch-Kincaid reading ease score: 93.58 Very easy (5th grade)"
 
 #+BEGIN_SRC elisp :results output :exports results
 (print (writegood-grade-level))
@@ -471,13 +528,13 @@ document.getElementById("p3").style.backgroundColor = "#ff6666";
 
 #+RESULTS:
 : 
-: "Flesch-Kincaid grade level score: 2.44"
+: "Flesch-Kincaid grade level score: 2.77"
 
  
 
 
 * Original 5MF Presentation
 
-Note, this presentation was originally here: 
+Note, this presentation was originally here: https://github.com/FinancialMarkets/5MinuteFinance/tree/master/Corporate_Finance/TVM_Single_CFs
 
 
