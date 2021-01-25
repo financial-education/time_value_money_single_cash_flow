@@ -1,6 +1,6 @@
 #+title: The Time Value of Money: Single Cash Flows
 #+author: Matt Brigida, Ph.D.
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 
 
 What does it mean to say that money has “time value”? Essentially it means that $1 (or €1 or ¥1 or £1) promised for some future date has a different value (usually lower) than the same amount today. 

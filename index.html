@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-08-02 Sun 11:09 -->
+<!-- 2021-01-25 Mon 14:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Time Value of Money: Single Cash Flows</title>
@@ -180,12 +180,12 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -262,28 +262,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org66d5799">1. The Discount Rate</a></li>
-<li><a href="#orgd1d8b16">2. A General Approach</a></li>
-<li><a href="#org5427cc6">3. The General Formula</a></li>
-<li><a href="#orgbfcc613">4. Interactive App</a>
+<li><a href="#org0808fe1">1. The Discount Rate</a></li>
+<li><a href="#orgd7149f5">2. A General Approach</a></li>
+<li><a href="#org73069f4">3. The General Formula</a></li>
+<li><a href="#org4ca2527">4. Interactive App</a>
 <ul>
-<li><a href="#org49ce3ab">4.1. Python calculation</a></li>
+<li><a href="#org5b9df62">4.1. Python calculation</a></li>
 </ul>
 </li>
-<li><a href="#org772106e">5. Rearranging the Formula</a>
+<li><a href="#orgb048b7c">5. Rearranging the Formula</a>
 <ul>
-<li><a href="#org0c2f81b">5.1. Python Calculation</a></li>
+<li><a href="#org02f2588">5.1. Python Calculation</a></li>
 </ul>
 </li>
-<li><a href="#org8355b18">6. The Interest Rate</a>
+<li><a href="#org0d3bcdd">6. The Interest Rate</a>
 <ul>
-<li><a href="#orge50bc7b">6.1. Python Calculation</a></li>
+<li><a href="#orgde47ac8">6.1. Python Calculation</a></li>
 </ul>
 </li>
-<li><a href="#org2b2331e">7. The Number of Periods</a></li>
-<li><a href="#org42c6d10">8. Self-Quiz Questions</a></li>
-<li><a href="#org66d8156">9. Reading Ease Score</a></li>
-<li><a href="#orgda4a411">10. Original 5MF Presentation</a></li>
+<li><a href="#org7cdb5a7">7. The Number of Periods</a></li>
+<li><a href="#orgea7492d">8. Self-Quiz Questions</a></li>
+<li><a href="#org69a107c">9. Reading Ease Score</a></li>
+<li><a href="#orgfc28543">10. Original 5MF Presentation</a></li>
 </ul>
 </div>
 </div>
@@ -297,8 +297,8 @@ What does it mean to say that money has “time value”? Essentially it means t
 <li>The time value of money (TVM) is often expressed in terms of an annual interest rate (or discount rate), compounded with some frequency (typically annually or semi-annually). <b>Compounding</b> means you earn interest on interest. In the example above, the corresponding interest rate would be 5.409% (annually compounded for two years) since \(90(1 + 5.409%)^2 = 100\).</li>
 </ul>
 
-<div id="outline-container-org66d5799" class="outline-2">
-<h2 id="org66d5799"><span class="section-number-2">1</span> The Discount Rate</h2>
+<div id="outline-container-org0808fe1" class="outline-2">
+<h2 id="org0808fe1"><span class="section-number-2">1</span> The Discount Rate</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The TVM discount factor (or corresponding discount rate) is determined by a number of factors:
@@ -318,8 +318,8 @@ In this presentation, we'll cover the basic mechanics of understanding and calcu
 </div>
 </div>
 
-<div id="outline-container-orgd1d8b16" class="outline-2">
-<h2 id="orgd1d8b16"><span class="section-number-2">2</span> A General Approach</h2>
+<div id="outline-container-orgd7149f5" class="outline-2">
+<h2 id="orgd7149f5"><span class="section-number-2">2</span> A General Approach</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Say we have \$1 today, and we can invest this dollar <b>every year</b> at 7\% per year.  
@@ -337,8 +337,8 @@ Say we have \$1 today, and we can invest this dollar <b>every year</b> at 7\% pe
 
 
 
-<div id="outline-container-org5427cc6" class="outline-2">
-<h2 id="org5427cc6"><span class="section-number-2">3</span> The General Formula</h2>
+<div id="outline-container-org73069f4" class="outline-2">
+<h2 id="org73069f4"><span class="section-number-2">3</span> The General Formula</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Proceeding this way for <b>n</b> periods (here a period is a year), we can see the future value (<b>FV</b>) of some amount of money today (denote this as <b>PV</b>) at time <b>n</b> is:
@@ -354,8 +354,8 @@ Proceeding this way for <b>n</b> periods (here a period is a year), we can see t
 
 
 
-<div id="outline-container-orgbfcc613" class="outline-2">
-<h2 id="orgbfcc613"><span class="section-number-2">4</span> Interactive App</h2>
+<div id="outline-container-org4ca2527" class="outline-2">
+<h2 id="org4ca2527"><span class="section-number-2">4</span> Interactive App</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The following app will calculate the future value of $1 for every year up to the maximum year you select.  You can also select the interest rate per year.  
@@ -423,8 +423,8 @@ var calculate = function() {
 </div>
 
 
-<div id="outline-container-org49ce3ab" class="outline-3">
-<h3 id="org49ce3ab"><span class="section-number-3">4.1</span> Python calculation</h3>
+<div id="outline-container-org5b9df62" class="outline-3">
+<h3 id="org5b9df62"><span class="section-number-3">4.1</span> Python calculation</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">future_value</span><span style="color: #839496;">(</span>pv, rate, periods<span style="color: #839496;">)</span>:
@@ -448,8 +448,8 @@ var calculate = function() {
 </div>
 
 
-<div id="outline-container-org772106e" class="outline-2">
-<h2 id="org772106e"><span class="section-number-2">5</span> Rearranging the Formula</h2>
+<div id="outline-container-orgb048b7c" class="outline-2">
+<h2 id="orgb048b7c"><span class="section-number-2">5</span> Rearranging the Formula</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 So now that we have the general formula which describes how a single cash flow moves through time:
@@ -525,8 +525,8 @@ var calculate1 = function() {
 </body>
 </div>
 
-<div id="outline-container-org0c2f81b" class="outline-3">
-<h3 id="org0c2f81b"><span class="section-number-3">5.1</span> Python Calculation</h3>
+<div id="outline-container-org02f2588" class="outline-3">
+<h3 id="org02f2588"><span class="section-number-3">5.1</span> Python Calculation</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">present_value</span><span style="color: #839496;">(</span>fv, rate, periods<span style="color: #839496;">)</span>:
@@ -551,8 +551,8 @@ var calculate1 = function() {
 
 
 
-<div id="outline-container-org8355b18" class="outline-2">
-<h2 id="org8355b18"><span class="section-number-2">6</span> The Interest Rate</h2>
+<div id="outline-container-org0d3bcdd" class="outline-2">
+<h2 id="org0d3bcdd"><span class="section-number-2">6</span> The Interest Rate</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Solving our equation for the interest rate we have: 
@@ -621,8 +621,8 @@ var calculate2 = function() {
 </body>
 </div>
 
-<div id="outline-container-orge50bc7b" class="outline-3">
-<h3 id="orge50bc7b"><span class="section-number-3">6.1</span> Python Calculation</h3>
+<div id="outline-container-orgde47ac8" class="outline-3">
+<h3 id="orgde47ac8"><span class="section-number-3">6.1</span> Python Calculation</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">rate</span><span style="color: #839496;">(</span>fv, pv, periods<span style="color: #839496;">)</span>:
@@ -646,8 +646,8 @@ var calculate2 = function() {
 
 
 
-<div id="outline-container-org2b2331e" class="outline-2">
-<h2 id="org2b2331e"><span class="section-number-2">7</span> The Number of Periods</h2>
+<div id="outline-container-org7cdb5a7" class="outline-2">
+<h2 id="org7cdb5a7"><span class="section-number-2">7</span> The Number of Periods</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Lastly, solving for the number of periods yields: 
@@ -738,8 +738,8 @@ var calculate3 = function() {
 </div>
 
 
-<div id="outline-container-org42c6d10" class="outline-2">
-<h2 id="org42c6d10"><span class="section-number-2">8</span> Self-Quiz Questions</h2>
+<div id="outline-container-orgea7492d" class="outline-2">
+<h2 id="orgea7492d"><span class="section-number-2">8</span> Self-Quiz Questions</h2>
 <div class="outline-text-2" id="text-8">
 <script>
 var submitAnswer1 = function() {
@@ -864,18 +864,18 @@ document.getElementById("p3").style.backgroundColor = "#ff6666";
 </div>
 </div>
 
-<div id="outline-container-org66d8156" class="outline-2">
-<h2 id="org66d8156"><span class="section-number-2">9</span> <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests">Reading Ease Score</a></h2>
+<div id="outline-container-org69a107c" class="outline-2">
+<h2 id="org69a107c"><span class="section-number-2">9</span> <a href="https://en.wikipedia.org/wiki/Flesch%25E2%2580%2593Kincaid_readability_tests">Reading Ease Score</a></h2>
 <div class="outline-text-2" id="text-9">
 <pre class="example">
 
-"Flesch-Kincaid reading ease score: 93.59 Very easy (5th grade)"
+"Flesch-Kincaid reading ease score: 93.63 Very easy (5th grade)"
 
 </pre>
 
 <pre class="example">
 
-"Flesch-Kincaid grade level score: 2.69"
+"Flesch-Kincaid grade level score: 2.68"
 
 </pre>
 </div>
@@ -884,8 +884,8 @@ document.getElementById("p3").style.backgroundColor = "#ff6666";
 
 
 
-<div id="outline-container-orgda4a411" class="outline-2">
-<h2 id="orgda4a411"><span class="section-number-2">10</span> Original 5MF Presentation</h2>
+<div id="outline-container-orgfc28543" class="outline-2">
+<h2 id="orgfc28543"><span class="section-number-2">10</span> Original 5MF Presentation</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Note, this presentation was originally here: <a href="https://github.com/FinancialMarkets/5MinuteFinance/tree/master/Corporate_Finance/TVM_Single_CFs">https://github.com/FinancialMarkets/5MinuteFinance/tree/master/Corporate_Finance/TVM_Single_CFs</a>
@@ -895,7 +895,7 @@ Note, this presentation was originally here: <a href="https://github.com/Financi
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matt Brigida, Ph.D.</p>
-<p class="date">Created: 2020-08-02 Sun 11:09</p>
+<p class="date">Created: 2021-01-25 Mon 14:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
